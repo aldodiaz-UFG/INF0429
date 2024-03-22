@@ -16,7 +16,6 @@ Seguindo a documentação descrita em [Basic Setup](https://turtlebot.github.io/
     ```
     turtlebot4-setup
     ```
-- Por exemplo: Utilizou-se a rede local: `miss_5G` cuja senha é `pmecathome`, cujo roteador está presente no laboratório PixelLab(INF/UFG)
 <div align="center">
 
 ![turtlebot4-setup](./docs/wifi_setup.gif)
