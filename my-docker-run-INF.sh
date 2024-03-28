@@ -21,14 +21,14 @@ xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
 docker run -it --rm \
     --privileged \
     --network=host \
+    --name="turtlebot4" \
     --env="DISPLAY=$DISPLAY" \
     --env="QT_X11_NO_MITSHM=1" \
-    --env="ROS_LOCALHOST_ONLY=1" \
+    --env="ROS_LOCALHOST_ONLY=0" \
     --env="ROS_DOMAIN_ID=91" \
     --env="TERM=xterm-256color" \
-    --env LIBGL_ALWAYS_SOFTWARE=0 \
+    --env LIBGL_ALWAYS_SOFTWARE=1 \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
-    --volume="$HOME/ws/src:/home/$USERNAME/ws/src" \
     --env="XAUTHORITY=$XAUTH" \
     --volume="$XAUTH:$XAUTH" \
     "$IMAGE_NAME"
