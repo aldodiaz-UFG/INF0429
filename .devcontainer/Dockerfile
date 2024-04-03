@@ -12,9 +12,9 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && apt-get install -y sudo \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
+
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y python3-pip
-
 
 # Install some packages for ROS2
 RUN apt-get update && apt-get install -y \
@@ -47,7 +47,7 @@ RUN mkdir -p /home/$USERNAME/ws/src
 RUN chown -R $USERNAME /home/$USERNAME/ws
 
 # Fixing some ignition packages that were giving errors
-RUN /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash && \
+RUN /bin/bash -c "source /opt/ros/$ROS_DISTRO/setup.bash && \
     cd /home/$USERNAME/ws/src && \
     git clone https://github.com/ros-controls/gz_ros2_control.git && \
     cd gz_ros2_control && \
@@ -56,13 +56,13 @@ RUN /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash && \
     colcon build --packages-select ign_ros2_control"
 
 # Changing the URL for generating some worlds
-RUN sed -i 's/fuel.ignitionrobotics.org/fuel.gazebosim.org/g' /opt/ros/humble/share/turtlebot4_ignition_bringup/worlds/warehouse.sdf
-RUN sed -i 's/fuel.ignitionrobotics.org/fuel.gazebosim.org/g' /opt/ros/humble/share/turtlebot4_ignition_bringup/worlds/depot.sdf
-RUN sed -i 's/fuel.ignitionrobotics.org/fuel.gazebosim.org/g' /opt/ros/humble/share/irobot_create_ignition_bringup/worlds/depot.sdf
-RUN sed -i 's/ign_args/gz_args/g' /opt/ros/humble/share/turtlebot4_ignition_bringup/launch/ignition.launch.py
+RUN sed -i 's/fuel.ignitionrobotics.org/fuel.gazebosim.org/g' /opt/ros/$ROS_DISTRO/share/turtlebot4_ignition_bringup/worlds/warehouse.sdf
+RUN sed -i 's/fuel.ignitionrobotics.org/fuel.gazebosim.org/g' /opt/ros/$ROS_DISTRO/share/turtlebot4_ignition_bringup/worlds/depot.sdf
+RUN sed -i 's/fuel.ignitionrobotics.org/fuel.gazebosim.org/g' /opt/ros/$ROS_DISTRO/share/irobot_create_ignition_bringup/worlds/depot.sdf
+RUN sed -i 's/ign_args/gz_args/g' /opt/ros/$ROS_DISTRO/share/turtlebot4_ignition_bringup/launch/ignition.launch.py
 
 # Source ROS packages (RVIZ, teleop)
-RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /home/$USERNAME/.bashrc
+RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /home/$USERNAME/.bashrc
 RUN echo "source /home/$USERNAME/ws/install/setup.bash" >> /home/$USERNAME/.bashrc
 
 ENV SHELL /bin/bash
