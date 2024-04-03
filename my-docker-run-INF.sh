@@ -27,7 +27,7 @@ docker run -it --rm \
     --env="ROS_LOCALHOST_ONLY=1" \
     --env="ROS_DOMAIN_ID=91" \
     --env="TERM=xterm-256color" \
-    --env LIBGL_ALWAYS_SOFTWARE=0 \
+    --env="LIBGL_ALWAYS_SOFTWARE=0" \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     --env="XAUTHORITY=$XAUTH" \
     --volume="$XAUTH:$XAUTH" \
