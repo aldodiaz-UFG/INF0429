@@ -12,3 +12,6 @@
 
 ## News
 [Suspected Russia-trained spy whale reappears off Sweden’s coast](https://www.theguardian.com/world/2023/may/29/suspected-russia-trained-spy-whale-reappears-off-swedens-coast)
+
+## Canais
+[Articulated Robotics](https://www.youtube.com/@ArticulatedRobotics/videos)
