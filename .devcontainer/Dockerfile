@@ -26,8 +26,6 @@ RUN apt-get update && apt-get install -y \
     ~nros-humble-rqt* \
     ignition-fortress
 
-RUN rm -rf /var/lib/apt/lists/*
-
 # Create ROS2 workspace
 RUN mkdir -p $ROS2_WORKSPACE/src
 
@@ -47,8 +45,9 @@ RUN sed -i 's/fuel.ignitionrobotics.org/fuel.gazebosim.org/g' /opt/ros/$ROS_DIST
 RUN sed -i 's/ign_args/gz_args/g' /opt/ros/$ROS_DISTRO/share/turtlebot4_ignition_bringup/launch/ignition.launch.py
 
 # PostCreate commands
-RUN rosdep update && \
-    rosdep install --from-paths src --ignore-src -y && \
+RUN rosdep fix-permissions && \
+    rosdep update && \
+    rosdep install --from-paths $ROS2_WORKSPACE/src --ignore-src -y && \
     chown -R $(whoami) $ROS2_WORKSPACE
 
 # Source ROS packages (RVIZ, teleop)
