@@ -24,8 +24,9 @@ RUN apt-get update && apt-get install -y \
     ros-humble-turtlesim \
     ros-humble-demo-nodes-cpp \
     ~nros-humble-rqt* \
-    ignition-fortress \
-    rm -rf /var/lib/apt/lists/*
+    ignition-fortress
+
+RUN rm -rf /var/lib/apt/lists/*
 
 # Create ROS2 workspace
 RUN mkdir -p $ROS2_WORKSPACE/src
