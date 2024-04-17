@@ -9,9 +9,11 @@
 
 ## Slides
 
-[Slides - Prática02 - Introdução](https://docs.google.com/presentation/d/1SQlcrmDEe3lUtHsS-UlA3CTYlnCL9IrbYHDfD-pv-vc/edit?usp=sharing)
+[Prática02 - Introduction](https://docs.google.com/presentation/d/1SQlcrmDEe3lUtHsS-UlA3CTYlnCL9IrbYHDfD-pv-vc/edit?usp=sharing)
 
-[Slides - Prática03 - ROS2 Graph](https://docs.google.com/presentation/d/1IktfJ4hckV0X0KWrKsvhCwkpulzlN_LZWKLgwvX_hOE/edit?usp=sharing)
+[Prática03 - ROS2 Graph](https://docs.google.com/presentation/d/1IktfJ4hckV0X0KWrKsvhCwkpulzlN_LZWKLgwvX_hOE/edit?usp=sharing)
+
+[Prática04 - Build your ROS package](https://docs.google.com/presentation/d/1bqmwq2UUKUxL_hhzim8HDZslaxihENNtfmV476KMlJ0/edit?usp=sharing)
 
 ## News
 [Suspected Russia-trained spy whale reappears off Sweden’s coast](https://www.theguardian.com/world/2023/may/29/suspected-russia-trained-spy-whale-reappears-off-swedens-coast)
