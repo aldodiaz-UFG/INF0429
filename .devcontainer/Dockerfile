@@ -51,8 +51,8 @@ RUN rosdep fix-permissions && \
     chown -R $(whoami) $ROS2_WORKSPACE
 
 # Source ROS packages (RVIZ, teleop)
-RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /.bashrc
-RUN echo "source $ROS2_WORKSPACE/install/setup.bash" >> /.bashrc
+RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /.profile
+RUN echo "source $ROS2_WORKSPACE/install/setup.bash" >> /.profile
 
 ENV SHELL /bin/bash
 
