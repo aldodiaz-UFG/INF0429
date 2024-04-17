@@ -5,7 +5,7 @@
 [Tutorial Basico de ROS](http://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools.html)
 
 ## Tools
-[Handling multiple terminals](https://docs.google.com/presentation/d/1ZMH70_KPD-uV5qBnFV8VC6YsYMKM1wspKqPhwly7R0o/edit?usp=sharing)
+[tmux - Handling multiple terminals](https://docs.google.com/presentation/d/1ZMH70_KPD-uV5qBnFV8VC6YsYMKM1wspKqPhwly7R0o/edit?usp=sharing)
 
 ## Slides
 
