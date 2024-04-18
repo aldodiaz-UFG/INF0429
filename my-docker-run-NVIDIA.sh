@@ -30,7 +30,6 @@ docker run -it --rm \
     --env="NVIDIA_DRIVER_CAPABILITIES=all" \
     --env="TERM=xterm-256color" \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
-    --volume="$HOME/ws/src:/home/$USERNAME/ws/src" \
     --env="XAUTHORITY=$XAUTH" \
     --volume="$XAUTH:$XAUTH" \
     --runtime nvidia \

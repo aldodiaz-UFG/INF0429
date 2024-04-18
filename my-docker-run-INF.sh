@@ -32,3 +32,4 @@ docker run -it --rm \
     --env="XAUTHORITY=$XAUTH" \
     --volume="$XAUTH:$XAUTH" \
     "$IMAGE_NAME"
+
