@@ -11,7 +11,7 @@
 
 [Prática02 - Introduction](https://docs.google.com/presentation/d/1SQlcrmDEe3lUtHsS-UlA3CTYlnCL9IrbYHDfD-pv-vc/edit?usp=sharing)
 
-[Prática03 - ROS2 Graph](https://docs.google.com/presentation/d/1IktfJ4hckV0X0KWrKsvhCwkpulzlN_LZWKLgwvX_hOE/edit?usp=sharing)
+[Prática03 - ROS2 Graph](https://docs.google.com/presentation/d/1IktfJ4hckV0X0KWrKsvhCwkpulzlN_LZWKLgwvX_hOE/)
 
 [Prática04 - Build your ROS package](https://docs.google.com/presentation/d/1bqmwq2UUKUxL_hhzim8HDZslaxihENNtfmV476KMlJ0/edit?usp=sharing)
 
