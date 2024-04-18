@@ -17,7 +17,7 @@
 
 [* Alexandre Costa - ROS2](https://www.canva.com/design/DAFfHPSs7YI/qG0yB1t3E5dre9TYwx8yTQ/edit?utm_content=DAFfHPSs7YI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
-[* Heinz Felipe - Robótica na Lavoura](https://www.canva.com/design/DAGCwHQ5sYA/4tjv1Iv3B3pE_ijSyXZNbQ/edit?utm_content=DAGCwHQ5sYA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+[* Heinz Felipe - Robótica na lavoura](https://www.canva.com/design/DAGCwHQ5sYA/4tjv1Iv3B3pE_ijSyXZNbQ/edit?utm_content=DAGCwHQ5sYA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 ## News
 [Suspected Russia-trained spy whale reappears off Sweden’s coast](https://www.theguardian.com/world/2023/may/29/suspected-russia-trained-spy-whale-reappears-off-swedens-coast)
