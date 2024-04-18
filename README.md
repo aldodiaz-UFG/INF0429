@@ -19,6 +19,9 @@
 
 [* Heinz Felipe - Robótica na lavoura](https://www.canva.com/design/DAGCwHQ5sYA/4tjv1Iv3B3pE_ijSyXZNbQ/edit?utm_content=DAGCwHQ5sYA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
+## Labs
+[Lab01 - teleop](https://www.overleaf.com/download/project/66218416fd414b7e7ffd455a/build/18ef32fee88-3f1e6088b6a450c6/output/output.pdf?compileGroup=standard&clsiserverid=clsi-pre-emp-n2d-b-f-wsjt&enable_pdf_caching=true&popupDownload=true)
+
 ## News
 [Suspected Russia-trained spy whale reappears off Sweden’s coast](https://www.theguardian.com/world/2023/may/29/suspected-russia-trained-spy-whale-reappears-off-swedens-coast)
 
