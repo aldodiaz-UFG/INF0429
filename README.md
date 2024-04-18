@@ -1,4 +1,4 @@
-# INF0429 - Robotics
+⁹# INF0429 - Robotics
 
 [Instalacao de Docker + VSCode](https://docs.ros.org/en/humble/How-To-Guides/Setup-ROS-2-with-VSCode-and-Docker-Container.html)
 
@@ -14,6 +14,8 @@
 [Prática03 - ROS2 Graph](https://docs.google.com/presentation/d/1IktfJ4hckV0X0KWrKsvhCwkpulzlN_LZWKLgwvX_hOE/)
 
 [Prática04 - Build your ROS package](https://docs.google.com/presentation/d/1bqmwq2UUKUxL_hhzim8HDZslaxihENNtfmV476KMlJ0/edit?usp=sharing)
+
+[Alexandre Costa - ROS2](https://www.canva.com/design/DAFfHPSs7YI/qG0yB1t3E5dre9TYwx8yTQ/edit?utm_content=DAFfHPSs7YI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 [Heinz Felipe - Robótica na Lavoura](https://www.canva.com/design/DAGCwHQ5sYA/4tjv1Iv3B3pE_ijSyXZNbQ/edit?utm_content=DAGCwHQ5sYA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
