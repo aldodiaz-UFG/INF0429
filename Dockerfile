@@ -38,7 +38,7 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get install -y \
 # LaTeX fonts
     fonts-cmu \
-# OpenGL necessario para rodar o OpenCV
+# OpenGL required to run OpenCV
     libgl1-mesa-glx
 
 # Latest pip version
