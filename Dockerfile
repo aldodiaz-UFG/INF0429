@@ -41,9 +41,7 @@ RUN apt-get install -y \
 # OpenGL required to run OpenCV
     libgl1-mesa-glx
 
-# Latest pip version
-RUN pip3 install --upgrade pip
-
+# Python packages
 RUN pip3 install \
 # Plots
     matplotlib \
