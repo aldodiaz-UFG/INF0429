@@ -95,7 +95,7 @@ RUN sed -i 's/ign_args/gz_args/g' /opt/ros/$ROS_DISTRO/share/turtlebot4_ignition
 RUN rosdep fix-permissions && \
     rosdep update && \
     rosdep install --from-paths /home/$USERNAME/$ROS2_WORKSPACE/src --ignore-src -y && \
-    chown -R $(whoami) /home/$USERNAME/$ROS2_WORKSPACE
+    chown -R $USERNAME /home/$USERNAME/$ROS2_WORKSPACE
 
 # Source ROS packages on startup (RVIZ, teleop)
 RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /home/$USERNAME/.bashrc
