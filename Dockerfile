@@ -1,29 +1,42 @@
 FROM ros:humble
-ARG ROS2_WORKSPACE=/ros2_ws
+ARG ROS2_WORKSPACE=ros2_ws
+ARG USERNAME=INF0429
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
 
+# Create the local user
+RUN groupadd --gid $USER_GID $USERNAME \
+	&& useradd --uid $USER_UID --gid $USER_GID -m -s /bin/bash $USERNAME 
+
+# Install basic packages
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y \
     python3-pip \
-    wget
+    wget \
+    # [Optional] Add sudo support
+    # Omit if you don't need to install software after connecting
+    sudo \
+	&& echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
+	&& chmod 0440 /etc/sudoers.d/$USERNAME
 
 # Install ROS2, TurtleBot4, Gazebo packages
 RUN sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
 RUN wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add -
 RUN apt-get update && apt-get install -y \
-# ROS2 utilities
+    # ROS2 utilities
     ros-dev-tools \
     ros-humble-ament-cmake \
-# ROS demo packages
+    # ROS demo packages
     ros-humble-demo-nodes-cpp \
-# rqt
+    # rqt
     ~nros-humble-rqt* \
-# teleoperation
+    # teleoperation
     ros-humble-teleop-twist-keyboard \
-# turtlesim
+    # turtlesim
     ros-humble-turtlesim \
-# rviz2
+    # rviz2
     ros-humble-rviz2 \
-# turtlebot4
+    # turtlebot4
     ros-humble-turtlebot4-description \
     ros-humble-turtlebot4-msgs \
     ros-humble-turtlebot4-navigation \
@@ -31,43 +44,41 @@ RUN apt-get update && apt-get install -y \
     ros-humble-turtlebot4-simulator \
     ros-humble-turtlebot4-desktop \
     ros-humble-turtlebot4-tutorials \
-# Gazebo Ignition Fortress
-    ignition-fortress
-    
-# Install Python 3.x
-RUN apt-get install -y \
-# LaTeX fonts
+    # Gazebo Ignition Fortress
+    ignition-fortress \
+    # LaTeX fonts
     fonts-cmu \
-# OpenGL required to run OpenCV
+    # OpenGL required to run OpenCV
     libgl1-mesa-glx
 
 # Python packages
 RUN pip3 install \
-# Plots
+    # Plots
     matplotlib \
-# Notebooks
+    # Notebooks
     jupyter \
-# Machine Learning
+    # Machine Learning
     scipy pandas scikit-learn \
-# Signal Processing
+    # Signal Processing
     PyWavelets wave librosa music21 \
-# Image Processing & Computer Vision
+    # Image Processing & Computer Vision
     opencv-python opencv-contrib-python scikit-image \
-# Read ROS2 bags into a dataframe
+    # Read ROS2 bags into a dataframe
     rosbags-dataframe \
-# Plots with interactive visualization of coordinates
+    # Plots with interactive visualization of coordinates
     plotly \
-# Download datasets from shared Google Drive files
+    # Download datasets from shared Google Drive files
     gdown \
-# Network Science
+    # Network Science
     networkx
     
 # Create ROS2 workspace
-RUN mkdir -p $ROS2_WORKSPACE/src
+RUN sudo -u $USERNAME \
+    mkdir -p /home/$USERNAME/$ROS2_WORKSPACE/src
 
 # Fixing some ignition packages that were giving errors
 RUN /bin/bash -c "source /opt/ros/$ROS_DISTRO/setup.bash && \
-    cd $ROS2_WORKSPACE/src && \
+    cd /home/$USERNAME/$ROS2_WORKSPACE/src && \
     git clone https://github.com/ros-controls/gz_ros2_control.git && \
     cd gz_ros2_control && \
     git checkout humble && \
@@ -83,12 +94,12 @@ RUN sed -i 's/ign_args/gz_args/g' /opt/ros/$ROS_DISTRO/share/turtlebot4_ignition
 # Install ROS dependencies
 RUN rosdep fix-permissions && \
     rosdep update && \
-    rosdep install --from-paths $ROS2_WORKSPACE/src --ignore-src -y && \
-    chown -R $(whoami) $ROS2_WORKSPACE
+    rosdep install --from-paths /home/$USERNAME/$ROS2_WORKSPACE/src --ignore-src -y && \
+    chown -R $(whoami) /home/$USERNAME/$ROS2_WORKSPACE
 
 # Source ROS packages on startup (RVIZ, teleop)
-RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /root/.bashrc
-RUN echo "source $ROS2_WORKSPACE/install/setup.bash" >> /root/.bashrc
+RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /home/$USERNAME/.bashrc
+RUN echo "source /home/$USERNAME/$ROS2_WORKSPACE/install/setup.bash" >> /home/$USERNAME/.bashrc
 
 ENV SHELL /bin/bash
 
@@ -97,5 +108,5 @@ ENV SHELL /bin/bash
 # ********************************************************
 
 # [Optional] Set the default user. Omit if you want to keep the default as root.
-WORKDIR $ROS2_WORKSPACE
-
+USER $USERNAME
+WORKDIR /home/$USERNAME/$ROS2_WORKSPACE
