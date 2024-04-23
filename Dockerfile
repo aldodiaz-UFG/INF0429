@@ -75,6 +75,7 @@ RUN pip3 install \
     # Network Science
     networkx \
     # [workaround] Cleaning colcon build warning
+    # Ref: https://stackoverflow.com/questions/73257839/setup-py-install-is-deprecated-warning-shows-up-every-time-i-open-a-terminal-i
     pip install setuptools==58.2.0
     
 # Create ROS2 workspace
