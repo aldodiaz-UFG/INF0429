@@ -24,7 +24,10 @@ RUN sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb
 RUN wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add -
 RUN apt-get update && apt-get install -y \
     # ROS2 utilities
+    ros-humble-ros2-control \
+    ros-humble-ros2-controllers \
     ros-dev-tools \
+    chrony \
     ros-humble-ament-cmake \
     # ROS demo packages
     ros-humble-demo-nodes-cpp \
@@ -90,6 +93,10 @@ RUN sed -i 's/fuel.ignitionrobotics.org/fuel.gazebosim.org/g' /opt/ros/$ROS_DIST
 RUN sed -i 's/fuel.ignitionrobotics.org/fuel.gazebosim.org/g' /opt/ros/$ROS_DISTRO/share/turtlebot4_ignition_bringup/worlds/depot.sdf
 RUN sed -i 's/fuel.ignitionrobotics.org/fuel.gazebosim.org/g' /opt/ros/$ROS_DISTRO/share/irobot_create_ignition_bringup/worlds/depot.sdf
 RUN sed -i 's/ign_args/gz_args/g' /opt/ros/$ROS_DISTRO/share/turtlebot4_ignition_bringup/launch/ignition.launch.py
+ 
+# Changing the slam.yaml file tu run the SLAM 
+RUN sed -i 's/minimum_travel_distance: 0.0/minimum_travel_distance: 0.2/g' /opt/ros/$ROS_DISTRO/share/turtlebot4_navigation/config/slam.yaml
+RUN sed -i 's/minimum_travel_heading: 0.0/minimum_travel_heading: 0.1/g' /opt/ros/$ROS_DISTRO/share/turtlebot4_navigation/config/slam.yaml
 
 # Install ROS dependencies
 RUN rosdep fix-permissions && \
@@ -100,6 +107,28 @@ RUN rosdep fix-permissions && \
 # Source ROS packages on startup (RVIZ, teleop)
 RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /home/$USERNAME/.bashrc
 RUN echo "source /home/$USERNAME/$ROS2_WORKSPACE/install/setup.bash" >> /home/$USERNAME/.bashrc
+
+# Creating .sh for simulation
+RUN mkdir /home/$USERNAME/SIM
+RUN touch /home/$USERNAME/SIM/maze_world.sh
+RUN echo "export LIBGL_ALWAYS_SOFTWARE=false" >> /home/$USERNAME/SIM/maze_world.sh
+RUN echo "ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=maze" >> /home/$USERNAME/SIM/maze_world.sh
+
+
+RUN touch /home/$USERNAME/SIM/maze_world_slam.sh
+RUN echo "#!/bin/bash\n" > /home/$USERNAME/SIM/maze_world_slam.sh
+RUN echo "cleanup() {\n\
+    kill \$(ps aux | grep -E \"ros2 launch|slam_toolbox|rviz2|ign gazebo|robot_state_publisher|ros_gz_bridge|joint_state_publisher|irobot_create\" | awk '{print \$2}')\n\
+}\n\
+\n\
+trap cleanup SIGINT\n\
+\n\
+export LIBGL_ALWAYS_SOFTWARE=true\n\
+ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=maze &\n\
+ros2 launch turtlebot4_navigation slam.launch.py &\n\
+ros2 launch turtlebot4_viz view_robot.launch.py &\n\
+wait\n" > /home/$USERNAME/SIM/maze_world_slam.sh
+
 
 ENV SHELL /bin/bash
 
