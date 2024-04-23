@@ -73,7 +73,9 @@ RUN pip3 install \
     # Download datasets from shared Google Drive files
     gdown \
     # Network Science
-    networkx
+    networkx \
+    # [workaround] Cleaning colcon build warning
+    pip install setuptools==58.2.0
     
 # Create ROS2 workspace
 RUN sudo -u $USERNAME \
@@ -93,8 +95,8 @@ RUN sed -i 's/fuel.ignitionrobotics.org/fuel.gazebosim.org/g' /opt/ros/$ROS_DIST
 RUN sed -i 's/fuel.ignitionrobotics.org/fuel.gazebosim.org/g' /opt/ros/$ROS_DISTRO/share/turtlebot4_ignition_bringup/worlds/depot.sdf
 RUN sed -i 's/fuel.ignitionrobotics.org/fuel.gazebosim.org/g' /opt/ros/$ROS_DISTRO/share/irobot_create_ignition_bringup/worlds/depot.sdf
 RUN sed -i 's/ign_args/gz_args/g' /opt/ros/$ROS_DISTRO/share/turtlebot4_ignition_bringup/launch/ignition.launch.py
- 
-# Changing the slam.yaml file tu run the SLAM 
+
+# Changing the slam.yaml file to run the SLAM 
 RUN sed -i 's/minimum_travel_distance: 0.0/minimum_travel_distance: 0.2/g' /opt/ros/$ROS_DISTRO/share/turtlebot4_navigation/config/slam.yaml
 RUN sed -i 's/minimum_travel_heading: 0.0/minimum_travel_heading: 0.1/g' /opt/ros/$ROS_DISTRO/share/turtlebot4_navigation/config/slam.yaml
 
@@ -109,26 +111,23 @@ RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /home/$USERNAME/.bashrc
 RUN echo "source /home/$USERNAME/$ROS2_WORKSPACE/install/setup.bash" >> /home/$USERNAME/.bashrc
 
 # Creating .sh for simulation
-RUN mkdir /home/$USERNAME/SIM
-RUN touch /home/$USERNAME/SIM/maze_world.sh
-RUN echo "export LIBGL_ALWAYS_SOFTWARE=false" >> /home/$USERNAME/SIM/maze_world.sh
-RUN echo "ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=maze" >> /home/$USERNAME/SIM/maze_world.sh
-
-
-RUN touch /home/$USERNAME/SIM/maze_world_slam.sh
-RUN echo "#!/bin/bash\n" > /home/$USERNAME/SIM/maze_world_slam.sh
-RUN echo "cleanup() {\n\
-    kill \$(ps aux | grep -E \"ros2 launch|slam_toolbox|rviz2|ign gazebo|robot_state_publisher|ros_gz_bridge|joint_state_publisher|irobot_create\" | awk '{print \$2}')\n\
-}\n\
-\n\
-trap cleanup SIGINT\n\
-\n\
-export LIBGL_ALWAYS_SOFTWARE=true\n\
-ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=maze &\n\
-ros2 launch turtlebot4_navigation slam.launch.py &\n\
-ros2 launch turtlebot4_viz view_robot.launch.py &\n\
-wait\n" > /home/$USERNAME/SIM/maze_world_slam.sh
-
+RUN mkdir /home/$USERNAME/SIM && \
+    touch /home/$USERNAME/SIM/maze_world.sh && \
+    echo "export LIBGL_ALWAYS_SOFTWARE=false" >> /home/$USERNAME/SIM/maze_world.sh && \
+    echo "ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=maze" >> /home/$USERNAME/SIM/maze_world.sh
+RUN touch /home/$USERNAME/SIM/maze_world_slam.sh && \
+    echo "#!/bin/bash\n" > /home/$USERNAME/SIM/maze_world_slam.sh && \
+    echo "cleanup() {\n \
+    kill \$(ps aux | grep -E \"ros2 launch|slam_toolbox|rviz2|ign gazebo|robot_state_publisher|ros_gz_bridge|joint_state_publisher|irobot_create\" | awk '{print \$2}')\n \
+    }\n \
+    \n \
+    trap cleanup SIGINT\n \
+    \n \
+    export LIBGL_ALWAYS_SOFTWARE=true\n \
+    ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=maze &\n \
+    ros2 launch turtlebot4_navigation slam.launch.py &\n \
+    ros2 launch turtlebot4_viz view_robot.launch.py &\n \
+    wait\n" > /home/$USERNAME/SIM/maze_world_slam.sh
 
 ENV SHELL /bin/bash
 
