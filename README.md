@@ -22,6 +22,9 @@
 ## Labs
 [Lab01 - teleop](https://classroom.github.com/a/Xhg7DUof)
 
+## Projects
+[TIAGo robot in ROS2](https://github.com/pal-robotics/tiago_simulation)
+
 ## News
 [Suspected Russia-trained spy whale reappears off Sweden’s coast](https://www.theguardian.com/world/2023/may/29/suspected-russia-trained-spy-whale-reappears-off-swedens-coast)
 
