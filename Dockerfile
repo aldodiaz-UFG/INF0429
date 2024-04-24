@@ -6,7 +6,7 @@ ARG USER_GID=$USER_UID
 
 # Create the local user
 RUN groupadd --gid $USER_GID $USERNAME \
-	&& useradd --uid $USER_UID --gid $USER_GID -m -s /bin/bash $USERNAME 
+    && useradd --uid $USER_UID --gid $USER_GID -m -s /bin/bash $USERNAME 
 
 # Install basic packages
 RUN apt-get update && apt-get upgrade -y
@@ -83,13 +83,13 @@ RUN sudo -u $USERNAME \
     mkdir -p /home/$USERNAME/$ROS2_WORKSPACE/src
 
 # [Fix] Ignition packages
-RUN /bin/bash -c "source /opt/ros/$ROS_DISTRO/setup.bash && \
-    cd /home/$USERNAME/$ROS2_WORKSPACE/src && \
-    git clone https://github.com/ros-controls/gz_ros2_control.git && \
-    cd gz_ros2_control && \
-    git checkout humble && \
-    cd ../.. && \
-    colcon build --packages-select ign_ros2_control"
+RUN /bin/bash -c "source /opt/ros/$ROS_DISTRO/setup.bash \
+    && cd /home/$USERNAME/$ROS2_WORKSPACE/src \
+    && git clone https://github.com/ros-controls/gz_ros2_control.git \
+    && cd gz_ros2_control \
+    && git checkout humble \
+    && cd ../.. \
+    && colcon build --packages-select ign_ros2_control"
 
 # [Fix] World URLs
 RUN sed -i 's/fuel.ignitionrobotics.org/fuel.gazebosim.org/g' /opt/ros/$ROS_DISTRO/share/turtlebot4_ignition_bringup/worlds/warehouse.sdf
@@ -103,8 +103,8 @@ RUN sed -i 's/minimum_travel_heading: 0.0/minimum_travel_heading: 0.1/g' /opt/ro
 
 # Create simulation scripts
 RUN sudo -u $USERNAME \
-    mkdir -p /home/$USERNAME/$ROS2_WORKSPACE/SIM && \
-    echo "export LIBGL_ALWAYS_SOFTWARE=false\n \
+    mkdir -p /home/$USERNAME/$ROS2_WORKSPACE/SIM \
+    && echo "export LIBGL_ALWAYS_SOFTWARE=false\n \
     ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=maze" \
     > /home/$USERNAME/$ROS2_WORKSPACE/SIM/maze_world.sh
 RUN sudo -u $USERNAME \
@@ -127,10 +127,10 @@ RUN sudo -u $USERNAME \
 RUN chmod +x /home/$USERNAME/$ROS2_WORKSPACE/SIM/*.sh
 
 # Install ROS dependencies
-RUN rosdep fix-permissions && \
-    rosdep update && \
-    rosdep install --from-paths /home/$USERNAME/$ROS2_WORKSPACE/src --ignore-src -y && \
-    chown -R $USERNAME:$USERNAME /home/$USERNAME/$ROS2_WORKSPACE
+RUN rosdep fix-permissions \
+    && rosdep update \
+    && rosdep install --from-paths /home/$USERNAME/$ROS2_WORKSPACE/src --ignore-src -y \
+    && chown -R $USERNAME:$USERNAME /home/$USERNAME/$ROS2_WORKSPACE
 
 # Source ROS packages on startup (RVIZ, teleop)
 RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /home/$USERNAME/.bashrc
