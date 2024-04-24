@@ -82,7 +82,7 @@ RUN pip3 install \
 RUN sudo -u $USERNAME \
     mkdir -p /home/$USERNAME/$ROS2_WORKSPACE/src
 
-# Fixing some ignition packages that were giving errors
+# [Fix] Ignition packages
 RUN /bin/bash -c "source /opt/ros/$ROS_DISTRO/setup.bash && \
     cd /home/$USERNAME/$ROS2_WORKSPACE/src && \
     git clone https://github.com/ros-controls/gz_ros2_control.git && \
@@ -91,35 +91,29 @@ RUN /bin/bash -c "source /opt/ros/$ROS_DISTRO/setup.bash && \
     cd ../.. && \
     colcon build --packages-select ign_ros2_control"
 
-# Changing the URL for generating some worlds
+# [Fix] World URLs
 RUN sed -i 's/fuel.ignitionrobotics.org/fuel.gazebosim.org/g' /opt/ros/$ROS_DISTRO/share/turtlebot4_ignition_bringup/worlds/warehouse.sdf
 RUN sed -i 's/fuel.ignitionrobotics.org/fuel.gazebosim.org/g' /opt/ros/$ROS_DISTRO/share/turtlebot4_ignition_bringup/worlds/depot.sdf
 RUN sed -i 's/fuel.ignitionrobotics.org/fuel.gazebosim.org/g' /opt/ros/$ROS_DISTRO/share/irobot_create_ignition_bringup/worlds/depot.sdf
 RUN sed -i 's/ign_args/gz_args/g' /opt/ros/$ROS_DISTRO/share/turtlebot4_ignition_bringup/launch/ignition.launch.py
 
-# Changing the slam.yaml file to run the SLAM 
+# [Config] 'slam.yaml' file
 RUN sed -i 's/minimum_travel_distance: 0.0/minimum_travel_distance: 0.2/g' /opt/ros/$ROS_DISTRO/share/turtlebot4_navigation/config/slam.yaml
 RUN sed -i 's/minimum_travel_heading: 0.0/minimum_travel_heading: 0.1/g' /opt/ros/$ROS_DISTRO/share/turtlebot4_navigation/config/slam.yaml
 
-# Install ROS dependencies
-RUN rosdep fix-permissions && \
-    rosdep update && \
-    rosdep install --from-paths /home/$USERNAME/$ROS2_WORKSPACE/src --ignore-src -y && \
-    chown -R $USERNAME /home/$USERNAME/$ROS2_WORKSPACE
-
-# Source ROS packages on startup (RVIZ, teleop)
-RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /home/$USERNAME/.bashrc
-RUN echo "source /home/$USERNAME/$ROS2_WORKSPACE/install/setup.bash" >> /home/$USERNAME/.bashrc
-
-# Creating .sh for simulation
-RUN mkdir /home/$USERNAME/SIM && \
-    touch /home/$USERNAME/SIM/maze_world.sh && \
-    echo "export LIBGL_ALWAYS_SOFTWARE=false" >> /home/$USERNAME/SIM/maze_world.sh && \
-    echo "ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=maze" >> /home/$USERNAME/SIM/maze_world.sh
-RUN touch /home/$USERNAME/SIM/maze_world_slam.sh && \
-    echo "#!/bin/bash\n" > /home/$USERNAME/SIM/maze_world_slam.sh && \
-    echo "cleanup() {\n \
-    kill \$(ps aux | grep -E \"ros2 launch|slam_toolbox|rviz2|ign gazebo|robot_state_publisher|ros_gz_bridge|joint_state_publisher|irobot_create\" | awk '{print \$2}')\n \
+# Create simulation scripts
+RUN sudo -u $USERNAME \
+    mkdir -p /home/$USERNAME/$ROS2_WORKSPACE/SIM && \
+    echo "export LIBGL_ALWAYS_SOFTWARE=false\n \
+    ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=maze" \
+    > /home/$USERNAME/$ROS2_WORKSPACE/SIM/maze_world.sh
+RUN sudo -u $USERNAME \
+    echo "#!/bin/bash\n \
+    cleanup() {\n \
+    kill \ 
+    $(ps aux | grep -E \
+    "ros2 launch|slam_toolbox|rviz2|ign gazebo|robot_state_publisher|ros_gz_bridge|joint_state_publisher|irobot_create" | \
+    awk '{print \$2}')\n \
     }\n \
     \n \
     trap cleanup SIGINT\n \
@@ -128,8 +122,21 @@ RUN touch /home/$USERNAME/SIM/maze_world_slam.sh && \
     ros2 launch turtlebot4_ignition_bringup turtlebot4_ignition.launch.py world:=maze &\n \
     ros2 launch turtlebot4_navigation slam.launch.py &\n \
     ros2 launch turtlebot4_viz view_robot.launch.py &\n \
-    wait\n" > /home/$USERNAME/SIM/maze_world_slam.sh
+    wait\n" \
+    > /home/$USERNAME/$ROS2_WORKSPACE/SIM/maze_world_slam.sh
+RUN chmod +x /home/$USERNAME/$ROS2_WORKSPACE/SIM/*.sh
 
+# Install ROS dependencies
+RUN rosdep fix-permissions && \
+    rosdep update && \
+    rosdep install --from-paths /home/$USERNAME/$ROS2_WORKSPACE/src --ignore-src -y && \
+    chown -R $USERNAME:$USERNAME /home/$USERNAME/$ROS2_WORKSPACE
+
+# Source ROS packages on startup (RVIZ, teleop)
+RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /home/$USERNAME/.bashrc
+RUN echo "source /home/$USERNAME/$ROS2_WORKSPACE/install/setup.bash" >> /home/$USERNAME/.bashrc
+
+# Start up in BASH shell
 ENV SHELL /bin/bash
 
 # ********************************************************
