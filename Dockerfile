@@ -110,10 +110,9 @@ RUN sudo -u $USERNAME \
 RUN sudo -u $USERNAME \
     echo "#!/bin/bash\n \
     cleanup() {\n \
-    kill \ 
-    $(ps aux | grep -E \
-    "ros2 launch|slam_toolbox|rviz2|ign gazebo|robot_state_publisher|ros_gz_bridge|joint_state_publisher|irobot_create" | \
-    awk '{print \$2}')\n \
+    kill \$(ps aux | grep -E \
+    \"ros2 launch|slam_toolbox|rviz2|ign gazebo|robot_state_publisher|ros_gz_bridge|joint_state_publisher|irobot_create\" \
+    | awk '{print \$2}')\n \
     }\n \
     \n \
     trap cleanup SIGINT\n \
