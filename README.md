@@ -9,6 +9,8 @@
 
 ## Slides
 
+[Brainstorming Robótica + IA](https://docs.google.com/presentation/d/1tDKQ-N5le3v2vWzQQLP-NQomoXSfNvdtd3NOyMaxg6Y/edit?usp=sharing)
+
 [Prática02 - Introduction](https://docs.google.com/presentation/d/1SQlcrmDEe3lUtHsS-UlA3CTYlnCL9IrbYHDfD-pv-vc/edit?usp=sharing)
 
 [Prática03 - ROS2 Graph](https://docs.google.com/presentation/d/1IktfJ4hckV0X0KWrKsvhCwkpulzlN_LZWKLgwvX_hOE/)
