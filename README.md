@@ -19,6 +19,8 @@
 
 [* Heinz Felipe - Robótica na lavoura](https://www.canva.com/design/DAGCwHQ5sYA/4tjv1Iv3B3pE_ijSyXZNbQ/edit?utm_content=DAGCwHQ5sYA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
+[* Pedro Martins - Carro Autônomo](https://www.canva.com/design/DAGDQ9tX6jY/JTq9ZrjNg-8ODbWzGzWYvA/view)
+
 ## Labs
 [Lab01 - teleop](https://classroom.github.com/a/Xhg7DUof)
 
