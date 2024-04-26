@@ -24,6 +24,9 @@
 [* Pedro Martins - Carro Autônomo](https://www.canva.com/design/DAGDQ9tX6jY/JTq9ZrjNg-8ODbWzGzWYvA/view)
 
 ## Labs
+
+[Lab01 - teleop (Nota 1)](https://classroom.github.com/a/3DbBYhyZ)
+
 [Lab01 - teleop](https://classroom.github.com/a/Xhg7DUof)
 
 ## Projects
