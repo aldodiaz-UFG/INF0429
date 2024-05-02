@@ -19,7 +19,8 @@
         "-e", "ROS_DOMAIN_ID=91",
         "-e", "NVIDIA_DRIVER_CAPABILITIES=all",
         "-e", "NVIDIA_VISIBLE_DEVICES=all",
-        "-e", "TERM=xterm-256color"
+        "-e", "TERM=xterm-256color",
+        "-e", "IGN_IP=127.0.0.1"
     ],
     "workspaceMount": "source=${localWorkspaceFolder},target=/home/INF0429/ros2_ws/src,type=bind",
     "workspaceFolder": "/home/INF0429/ros2_ws/src",
