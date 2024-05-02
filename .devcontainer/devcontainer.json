@@ -3,7 +3,7 @@
     "privileged": true,
     "remoteUser": "INF0429",
     "build": {
-        "dockerfile": "Dockerfile",
+        "dockerfile": "../Dockerfile",
         "args": {
             "USERNAME": "INF0429"
         }
