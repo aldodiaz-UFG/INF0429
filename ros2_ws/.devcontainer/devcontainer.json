@@ -2,6 +2,7 @@
     "name": "turtlebot4",
     "privileged": true,
     "remoteUser": "INF0429",
+    "containerUser": "INF0429",
     "build": {
         "dockerfile": "../../Dockerfile",
         "args": {
@@ -18,8 +19,8 @@
         "-e", "NVIDIA_DRIVER_CAPABILITIES=all",
         "-e", "TERM=xterm-256color",
     ],
+    "workspaceMount": "source=${localWorkspaceFolder},target=/home/INF0429/ros2_ws/src,type=bind",
     "workspaceFolder": "/home/INF0429/ros2_ws/src",
-    "workspaceMount": "source=${localWorkspaceFolder},target=/home/kuntur/Documents/INF0429/ros2_ws/src,type=bind",
     "postCreateCommand": "",
     "mounts": [
         "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
@@ -38,7 +39,7 @@
         }
     },
     "containerEnv": {
-        "DISPLAY": "unix:1",
+        "DISPLAY": "unix:1"
     }
 }
 
