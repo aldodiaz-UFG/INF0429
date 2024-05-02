@@ -23,6 +23,8 @@
 
 [* Pedro Martins - Carro Autônomo](https://www.canva.com/design/DAGDQ9tX6jY/JTq9ZrjNg-8ODbWzGzWYvA/view)
 
+[* Iago Alves - LLMs](https://www.canva.com/design/DAGD8im6Aw4/bzwlV957dqeHEBbeL1NiQA/view)
+
 ## Labs
 
 [Lab01 - teleop (Nota 1)](https://classroom.github.com/a/3DbBYhyZ)
