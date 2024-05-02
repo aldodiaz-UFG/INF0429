@@ -19,11 +19,11 @@
 
 [* Alexandre Costa - ROS2](https://www.canva.com/design/DAFfHPSs7YI/qG0yB1t3E5dre9TYwx8yTQ/edit?utm_content=DAFfHPSs7YI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
-[Prática02 - Introduction](https://docs.google.com/presentation/d/1SQlcrmDEe3lUtHsS-UlA3CTYlnCL9IrbYHDfD-pv-vc/edit?usp=sharing)
+[Prática04 - Build your ROS package](https://docs.google.com/presentation/d/1bqmwq2UUKUxL_hhzim8HDZslaxihENNtfmV476KMlJ0/edit?usp=sharing)
 
 [Prática03 - ROS2 Graph](https://docs.google.com/presentation/d/1IktfJ4hckV0X0KWrKsvhCwkpulzlN_LZWKLgwvX_hOE/)
 
-[Prática04 - Build your ROS package](https://docs.google.com/presentation/d/1bqmwq2UUKUxL_hhzim8HDZslaxihENNtfmV476KMlJ0/edit?usp=sharing)
+[Prática02 - Introduction](https://docs.google.com/presentation/d/1SQlcrmDEe3lUtHsS-UlA3CTYlnCL9IrbYHDfD-pv-vc/edit?usp=sharing)
 
 ## Labs
 
