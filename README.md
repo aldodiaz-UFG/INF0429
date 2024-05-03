@@ -29,6 +29,8 @@
 
 ## Labs
 
+[Lab02 - lidar odometry](https://docs.google.com/presentation/d/1kXXJDKylKiX0bUfM0CpC-zhBuqCrolqz9D7-QPSm9zs/edit?usp=sharing)
+
 [Lab01 - teleop (Nota 1)](https://classroom.github.com/a/3DbBYhyZ)
 
 [Lab01 - teleop](https://classroom.github.com/a/Xhg7DUof)
