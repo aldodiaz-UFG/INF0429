@@ -36,6 +36,11 @@
 [Lab01 - teleop](https://classroom.github.com/a/Xhg7DUof)
 
 ## Projects
+
+[NEW! - LoCoBot](http://www.locobot.org/)
+
+[NEW! - TurtleBot4 + Braço manipulador](https://www.youtube.com/watch?v=ExbeyVWhtqw)
+
 [TIAGo robot in ROS2](https://github.com/pal-robotics/tiago_simulation)
 
 ## News
