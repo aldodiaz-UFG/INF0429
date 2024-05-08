@@ -1,0 +1,57 @@
+{
+    "name": "turtlebot4",
+    "privileged": true,
+    "remoteUser": "INF0429",
+    "containerUser": "INF0429",
+    "build": {
+        "dockerfile": "../Dockerfile",
+        "args": {
+            "USERNAME": "INF0429"
+        }
+    },
+    "runArgs": [
+        "--network=host",
+        "--gpus=all",
+        "--runtime=nvidia",
+        "-e", "DISPLAY=${env:DISPLAY}",
+        "-e", "QT_X11_NO_MITSHM=1",
+        "-e", "ROS_LOCALHOST_ONLY=1",
+        "-e", "ROS_DOMAIN_ID=91",
+        "-e", "NVIDIA_DRIVER_CAPABILITIES=all",
+        "-e", "NVIDIA_VISIBLE_DEVICES=all",
+        "-e", "TERM=xterm-256color",
+        "-e", "IGN_IP=127.0.0.1"
+    ],
+    "workspaceMount": "source=${localWorkspaceFolder},target=/home/INF0429/ros2_ws/src,type=bind",
+    "workspaceFolder": "/home/INF0429/ros2_ws/src",
+    "postCreateCommand": "",
+    "mounts": [
+        "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
+        "source=/dev/dri,target=/dev/dri,type=bind,consistency=cached"
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions":[
+                "ms-vscode.cpptools",
+                "ms-vscode.cpptools-themes",
+                "twxs.cmake",
+                "donjayamanne.python-extension-pack",
+                "eamodio.gitlens",
+                "ms-iot.vscode-ros",
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "ms-toolsai.jupyter",
+                "ms-toolsai.vscode-jupyter-cell-tags",
+                "ms-toolsai.jupyter-keymap",
+                "ms-toolsai.jupyter-renderers",
+                "ms-toolsai.vscode-jupyter-slideshow"
+            ]
+        }
+    },
+    "containerEnv": {
+        "DISPLAY": "unix:1"
+    },
+    "updateContentCommand": "python3 -m pip install -r requirements.txt",
+
+}
+
