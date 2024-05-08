@@ -53,30 +53,6 @@ RUN apt-get update && apt-get install -y \
     fonts-cmu \
     # OpenGL required to run OpenCV
     libgl1-mesa-glx
-
-# Python packages
-RUN pip3 install \
-    # Plots
-    matplotlib \
-    # Notebooks
-    jupyter \
-    # Machine Learning
-    scipy pandas scikit-learn \
-    # Signal Processing
-    PyWavelets wave librosa music21 \
-    # Image Processing & Computer Vision
-    opencv-python opencv-contrib-python scikit-image \
-    # Read ROS2 bags into a dataframe
-    rosbags-dataframe \
-    # Plots with interactive visualization of coordinates
-    plotly \
-    # Download datasets from shared Google Drive files
-    gdown \
-    # Network Science
-    networkx \
-    # [workaround] Cleaning colcon build warning
-    # Ref: https://stackoverflow.com/questions/73257839/setup-py-install-is-deprecated-warning-shows-up-every-time-i-open-a-terminal-i
-    pip install setuptools==58.2.0
     
 # Create ROS2 workspace
 RUN sudo -u $USERNAME \
@@ -145,3 +121,4 @@ ENV SHELL /bin/bash
 # [Optional] Set the default user. Omit if you want to keep the default as root.
 USER $USERNAME
 WORKDIR /home/$USERNAME/$ROS2_WORKSPACE
+
