@@ -35,11 +35,13 @@
 
 [Lab01 - teleop](https://classroom.github.com/a/Xhg7DUof)
 
-## Projects
+## Software
 
-[NEW! - LoCoBot](http://www.locobot.org/)
+[SpectacularAI VIO](https://spectacularai.github.io/docs/sdk/wrappers/ros.html)
 
-[NEW! - TurtleBot4 + Braço manipulador](https://www.youtube.com/watch?v=ExbeyVWhtqw)
+[LoCoBot](http://www.locobot.org/)
+
+[TurtleBot4 + Braço manipulador](https://www.youtube.com/watch?v=ExbeyVWhtqw)
 
 [TIAGo robot in ROS2](https://github.com/pal-robotics/tiago_simulation)
 
