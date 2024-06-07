@@ -37,7 +37,7 @@
 
 ## Software
 
-[SpectacularAI VIO](https://spectacularai.github.io/docs/sdk/wrappers/ros.html)
+[NEW! - SpectacularAI VIO](https://spectacularai.github.io/docs/sdk/wrappers/ros.html)
 
 [LoCoBot](http://www.locobot.org/)
 
