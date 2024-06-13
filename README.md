@@ -3,11 +3,19 @@
 ## Seminário
 [GITHUB - Conformação de equipes (DEADLINE 13/06/2024)](https://classroom.github.com/a/cQThrnt4)
 
-## Citaões (ABNT, IEEE)
+## Citações
 
+### ABNT
 ``Segundo (RUFFSL, 2024), blah blah blah -> INDIRETA``
 
 ``Ruffsl, 2024, comenta que ... blah blah blah -> DIRETA``
+
+``1. RUFFSL. Repeatable Reproducible and Accessible ROS Development via Dev Containers and PWAs. Dísponivel: https://www.youtube.com/watch?v=aEowtvmoqUM. Acesso em: 13 junho 2024.``
+
+### IEEE
+``Segundo [1], blah blah blah -> INDIRETA``
+
+``[1] comenta que ... blah blah blah -> DIRETA``
 
 ``[1] RUFFSL. Repeatable Reproducible and Accessible ROS Development via Dev Containers and PWAs. Dísponivel: https://www.youtube.com/watch?v=aEowtvmoqUM. Acesso em: 13 junho 2024.``
 
