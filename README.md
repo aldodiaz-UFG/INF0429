@@ -3,6 +3,14 @@
 ## Seminário
 [GITHUB - Conformação de equipes (DEADLINE 13/06/2024)](https://classroom.github.com/a/cQThrnt4)
 
+## Citaões (ABNT, IEEE)
+
+``Segundo (RUFFSL, 2024), blah blah blah -> INDIRETA
+Ruffsl, 2024, comenta que ... blah blah blah -> DIRETA``
+
+
+[1] RUFFSL. Repeatable Reproducible and Accessible ROS Development via Dev Containers and PWAs. Dísponivel: https://www.youtube.com/watch?v=aEowtvmoqUM. Acesso em: 13 junho 2024.
+
 ## Instalação
 
 [Instalacao de Docker + VSCode](https://docs.ros.org/en/humble/How-To-Guides/Setup-ROS-2-with-VSCode-and-Docker-Container.html)
