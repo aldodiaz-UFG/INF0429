@@ -73,3 +73,56 @@
 
 ## Canais
 [Articulated Robotics](https://www.youtube.com/@ArticulatedRobotics/videos)
+
+# Mapeamento e Navegação no Turtlebot físico
+
+## Acessar o robo via ssh (configurado para o miss 5G)
+```
+ssh -X ubuntu@192.168.1.106
+```
+senha: turtlebot4
+
+## Gerando o mapa
+
+Rodar esses pacotes na máquina Local. O robô possui uma raspberry, portanto, rodar esses pacotes nela pode acabar sobrecarregando.
+
+### Pacote de SLAM para fazer o mapeamento
+```
+ros2 launch turtlebot4_navigation slam.launch.py
+```
+
+### Pacote para abrir as configurações do RVIZ
+
+```
+ros2 launch turtlebot4_viz view_robot.launch.py
+```
+
+### Pacote para fazer a teleoperação
+```
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+```
+
+### Pacote para salvar o mapa
+```
+ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap "name:
+data: 'map_name'"
+```
+
+## Rodando navegação
+
+Rodar esses pacotes na máquina Local. O robô possui uma raspberry, portanto, rodar esses pacotes nela pode acabar sobrecarregando.
+
+### Pacote para lançar configurações de localização 
+```
+ros2 launch turtlebot4_navigation localization.launch.py map:=map_name.yaml
+```
+
+### Inicia a stack de navegação
+```
+ros2 launch turtlebot4_navigation nav2.launch.py
+```
+
+### Pacote para abrir as configurações do RVIZ
+```
+ros2 launch turtlebot4_viz view_robot.launch.py
+```
