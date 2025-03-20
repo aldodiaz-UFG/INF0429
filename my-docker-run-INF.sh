@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Check if an image name was provided
 if [ "$#" -ne 1 ]; then
